@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geo Cherian Mathew - AI & IoT Developer Portfolio</title>
+
+  <link rel="shortcut icon" href="D:\vcard-personal-portfolio\assets\images\logo.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+  <style>
+    /* Custom Styles */
+    html { font-size: 15px; }
+
+    /* Sidebar name: allow wrapping so full name is visible */
+    .sidebar .name {
+      font-size: 1.3rem;
+      line-height: 1.15;
+      font-weight: 600;
+      max-width: 300px;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+      word-break: break-word;
+      display: block;
+    }
+
+    .sidebar .title {
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .resume header { position: relative; }
+
+    .resume .download-btn {
+      position: absolute;
+      right: 16px;
+      top: 100px;
+      background: #f7c948;
+      color: #111;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .resume .download-btn:hover { opacity: 0.95; transform: translateY(-1px); }
+
+    /* ---------------------------------------------------- */
+    /* 1. Custom CSS for Avatar Flip (Profile Modal) */
+    /* FIX: Added margin-left auto/auto to center the flip container for proper alignment */
+    /* ---------------------------------------------------- */
+
+    /* Container for the 3D flip effect */
+    .avatar-flip-container {
+        perspective: 1000px;
+        width: 80px; /* Must match figure.avatar-box width */
+        height: 80px; /* Must match figure.avatar-box height */
+        position: relative;
+        /* FIX: Center the flip container horizontally */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Target the existing avatar-box to apply flip styles */
+    .avatar-box {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        border-radius: 12px; /* Add border radius back to figure */
+        box-shadow: var(--shadow-2); /* Keep shadow */
+        overflow: hidden; /* Important for clipping */
+    }
+
+    /* Front side (Default Avatar) */
+    .avatar-box.front-face {
+        backface-visibility: hidden;
+        transform: rotateY(0deg);
+        z-index: 2;
+        /* Ensure the figure element stays visible */
+        display: block; 
+    }
+
+    /* Back side (Profile Image) - Initially hidden and rotated 180deg */
+    .avatar-box.back-face {
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+        z-index: 1;
+        background: var(--jet); /* Background for the profile image container */
+        display: block;
+    }
+
+    /* Style for the profile image on the back face */
+    .profile-image-back {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    /* Class added when flipped (click state) */
+    .sidebar-info.flipped .avatar-box.front-face {
+        transform: rotateY(-180deg);
+    }
+
+    .sidebar-info.flipped .avatar-box.back-face {
+        transform: rotateY(0deg);
+    }
+    
+    /* Ensure image elements inside avatar-box are clickable */
+    .avatar-box img {
+        cursor: pointer;
+        /* FIX: Remove width/height attributes from HTML and control size via CSS here */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    /* ---------------------------------------------------- */
+    /* 2. Certificate Modal CSS (Normal Size Pop-up) */
+    /* ---------------------------------------------------- */
+
+    /* Overlay for all modals */
+    .certificate-modal-container, .profile-modal-container {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 999; /* Higher z-index for certificate modal */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .certificate-modal-container.active {
+      display: flex;
+    }
+
+    .certificate-modal {
+      background: var(--eerie-black-1); /* Match portfolio background */
+      border-radius: 12px;
+      padding: 15px;
+      position: relative;
+      max-width: 90vw; /* Use relative units */
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      box-shadow: var(--shadow-4);
+      animation: slideIn 0.3s ease-out;
+      overflow: auto; /* Scroll if content is too large */
+    }
+
+    .certificate-modal-img {
+      max-width: 100%;
+      max-height: 85vh; /* Adjust for padding and button */
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      display: block; /* Remove space under image */
+    }
+
+    .certificate-modal-container .modal-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        color: var(--white-2);
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        z-index: 1000;
+    }
+
+    .certificate-modal-container .modal-close-btn:hover {
+        background: var(--yellow-crayola);
+        color: var(--smoky-black);
+    }
+
+    /* ---------------------------------------------------- */
+    /* 3. Media Queries (existing) */
+    /* ---------------------------------------------------- */
+
+    @media (max-width: 900px) {
+      .resume .download-btn { right: 12px; top: 20px; }
+      .sidebar .name { max-width: 160px; font-size: 0.95rem; }
+    }
+    @media (max-width: 600px) {
+      html { font-size: 14px; }
+      .resume .download-btn { position: static; display: inline-block; margin-top: 16px; }
+      .sidebar .name { max-width: 100%; white-space: normal; font-size: 1rem; }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    /* Removed unused data-profile-avatar-btn styles as the logic now uses the flip container */
+
+  </style>
+
+
+</head>
+
+<body>
+
+  <main>
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+        
+        <!-- WRAPPED THE AVATAR BOX IN A FLIP CONTAINER -->
+        <div class="avatar-flip-container" data-flip-container>
+            
+            <!-- FRONT FACE: The existing small avatar -->
+            <figure class="avatar-box front-face" data-avatar-face="front">
+                <!-- REMOVED width="80" here -->
+                <img src="./assets/images/my-avatar.png" alt="Geo Cherian Mathew" data-flip-trigger loading="lazy">
+            </figure>
+            
+            <!-- BACK FACE: The larger profile image (used for the flip) -->
+            <figure class="avatar-box back-face" data-avatar-face="back">
+                <!-- REMOVED width="80" here -->
+                <img src="./assets/images/geo6.jpg" alt="Geo Cherian Mathew Profile" class="profile-image-back" data-flip-trigger loading="lazy">
+            </figure>
+
+        </div>
+        <!-- END FLIP CONTAINER -->
+
+        <div class="info-content">
+          <h1 class="name" title="Geo Cherian Mathew">Geo Cherian Mathew</h1>
+
+          <p class="title">AI & IoT Developer | CSE Student</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:gingercatmonster19@gmail.com" class="contact-link">geomathewprojects28@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel: Unavailable" class="contact-link">Unavailable</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="2002-01-15">June 16, 2005</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Kerala, India</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://github.com/geo-cherian-mathew-2k28" class="social-link">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://in.linkedin.com/in/geo-cherian-mathew" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.instagram.com/_geo_cherian_mathew_?igsh=MWp6czloNTMyMTYxZQ==" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+    <div class="main-content">
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Certificates</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I'm a passionate Computer Science and Engineering student from India, specializing in AI, hardware-software integration, and IoT solutions. I excel at transforming complex real-world challenges into innovative, scalable prototypes that deliver measurable impact.
+          </p>
+
+          <p>
+            My expertise spans embedded systems, artificial intelligence, and full-stack development. I'm driven by the mission to build impactful solutions for agriculture, safety, healthcare, and education. With strong skills in hardware prototyping, AI integration, and system design, I create end-to-end solutions that combine cutting-edge technology with practical applicability.
+          </p>
+        </section>
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What I'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg" alt="AI & IoT icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">AI Integration</h4>
+
+                <p class="service-item-text">
+                  Building intelligent systems using Gemini API, Face Recognition, and custom AI solutions for real-world impact.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="Hardware Development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Hardware Prototyping</h4>
+
+                <p class="service-item-text">
+                  Designing and building IoT devices using Arduino, Bluetooth, GSM modules, and sensor integration.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" alt="Full-stack Development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Full-Stack Development</h4>
+
+                <p class="service-item-text">
+                  Creating web and mobile applications with modern UI/UX, API integration, and scalable backend architecture.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-photo.svg" alt="System Design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">System Architecture</h4>
+
+                <p class="service-item-text">
+                  Designing robust, scalable systems that merge hardware and software for optimal performance.
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+        <section class="testimonials">
+
+          <h3 class="h3 testimonials-title">Key Highlights</h3>
+
+          <ul class="testimonials-list has-scrollbar">
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="./assets/images/avatar-1.png" alt="Innovation" width="60" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Innovation-Driven</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    Passionate about creating impactful solutions that address real-world problems. Expertise in merging AI and hardware for unique, patent-intended innovations that solve challenges for farmers, riders, students, and communities.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="./assets/images/avatar-2.png" alt="Technical Excellence" width="60" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Technical Excellence</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    Strong proficiency in Python, Java, Arduino, and modern APIs. Experienced with embedded systems, IoT integration, AI APIs (Gemini), face recognition systems, and full-stack web development with scalable architecture.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="./assets/images/avatar-3.png" alt="Problem Solver" width="60" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Problem Solver</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    Skilled at breaking down complex systems into elegant solutions. Strong background in algorithm development, data structures, and system-level problem-solving with a focus on scalability and user impact.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="./assets/images/avatar-4.png" alt="Social Impact" width="60" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Social Impact</h4>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p>
+                    Driven to create solutions with real-world impact. Projects focus on supporting farmers, enhancing road safety, automating education, and protecting vulnerable populations through technology and innovation.
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </section>
+
+        <div class="modal-container" data-modal-container>
+
+          <div class="overlay" data-overlay></div>
+
+          <section class="testimonials-modal">
+
+            <button class="modal-close-btn" data-modal-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            <div class="modal-img-wrapper">
+              <figure class="modal-avatar-box">
+                <img src="./assets/images/avatar-1.png" alt="Innovation" width="80" data-modal-img>
+              </figure>
+
+              <img src="./assets/images/icon-quote.svg" alt="quote icon">
+            </div>
+
+            <div class="modal-content">
+
+              <h4 class="h3 modal-title" data-modal-title>Innovation-Driven Mindset</h4>
+
+              <time datetime="2024-11-25">November 25, 2024</time>
+
+              <div data-modal-text>
+                <p>
+                  I believe in using technology to solve real problems. Every project is designed with impact in mind—whether it's helping farmers increase yield, ensuring road safety, or automating critical institutional processes.
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+</article>
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+          <a href="./assets/files/Geo_Cherian_Mathew_Resume.pdf" download="Geo_Cherian_Mathew_Resume.pdf" class="download-btn">
+            Download Resume
+          </a>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">B.Tech in Computer Science and Engineering</h4>
+
+              <span>Ongoing</span>
+
+              <p class="timeline-text">
+                Undergraduate student with strong focus on AI, embedded systems, IoT, hardware prototyping, and full-stack development. Active learner in systems architecture and algorithmic problem-solving.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="briefcase-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Google Student Ambassador</h4>
+              <span>Sep 2025 – Present · Google</span>
+              <p class="timeline-text">
+                Contributing to community outreach, event management, and strategic communications to promote Google technologies and foster community development.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">AI ML Core Member</h4>
+              <span>Sep 2025 – Present · GDG on Campus AJCE</span>
+              <p class="timeline-text">
+                Contributing to innovative AI and Machine Learning projects, organizing workshops, and fostering a tech-driven community focused on Google technologies and ML advancements.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Core Team Member</h4>
+              <span>Jul 2025 – Present · Blankspace</span>
+              <p class="timeline-text">
+                Collaborating in planning and executing student-led events, workshops, and initiatives that promote creativity, interdisciplinary learning, and innovation on campus.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Embedded Systems Intern</h4>
+              <span>Apr 2025 – Present · Agrowtein Labs</span>
+              <p class="timeline-text">
+                Working on the development and testing of microcontroller-based systems for smart agriculture, including sensor integration, hardware prototyping, and firmware development.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Social Media Manager</h4>
+              <span>Mar 2025 – Present · ACM AJCE STUDENT CHAPTER</span>
+              <p class="timeline-text">
+                Overseeing digital strategy, content creation, and community engagement to enhance brand visibility and ensure ACM AJCE remains a dynamic tech hub.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">UI/UX Designer</h4>
+              <span>May 2025 – Sep 2025 · Agrowtein Labs</span>
+              <p class="timeline-text">
+                Designing intuitive, responsive, and user-centered interfaces for AgTech solutions, creating wireframes, prototypes, and collaborating with cross-functional teams.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">UI/UX Designer Intern</h4>
+              <span>May 2025 – Jun 2025 · Cognifyz Technologies</span>
+              <p class="timeline-text">
+                Assisting in designing intuitive user interfaces, creating wireframes and prototypes, and contributing to user research to enhance overall digital experiences.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Business Development Intern (Campus Ambassador Program)</h4>
+              <span>Mar 2025 – May 2025 · MyCaptain</span>
+              <p class="timeline-text">
+                Promoting skill-based courses, driving awareness through peer networking and campaigns, and collaborating on campus growth strategies.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">UI/UX Designer</h4>
+              <span>Feb 2025 – Mar 2025 · TEDxAJCE</span>
+              <p class="timeline-text">
+                Responsible for user research, wireframing, prototyping, and UI design for the TEDx AJCE website, ensuring a seamless and visually appealing experience.
+              </p>
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Technical Skills</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Programming Languages</h4>
+
+              <span>Proficient</span>
+
+              <p class="timeline-text">
+                Python (strong experience), Java, HTML, JavaScript (basic), C, Arduino programming, API integration with custom and third-party APIs.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Hardware & IoT</h4>
+
+              <span>Expert</span>
+
+              <p class="timeline-text">
+                Arduino UNO R4 WiFi, GSM900 Module, Bluetooth modules, IoT sensor integration, microcontroller programming, embedded systems design.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">AI & APIs</h4>
+
+              <span>Experienced</span>
+
+              <p class="timeline-text">
+                Gemini API, Face Recognition systems, NTES API integration, custom API development, AI model integration for intelligent systems.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Development Domains</h4>
+
+              <span>Skilled</span>
+
+              <p class="timeline-text">
+                Embedded systems, AI assistants, IoT automation, web development, app development, system architecture, database design, UI/UX basics.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My Technical Proficiency</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Python & AI Integration</h5>
+                <data value="90">90%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Hardware & IoT Development</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Full-Stack Web Development</h5>
+                <data value="80">80%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">System Architecture & Design</h5>
+                <data value="82">82%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 82%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Java & Backend Development</h5>
+                <data value="78">78%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 78%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">API Integration & Custom APIs</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+      <article class="portfolio" data-page="portfolio">
+
+  <header>
+    <h2 class="h2 article-title">Portfolio</h2>
+  </header>
+
+  <section class="projects">
+
+    <ul class="filter-list">
+
+      <li class="filter-item">
+        <button class="active" data-filter-btn>All</button>
+      </li>
+
+      <li class="filter-item">
+        <button data-filter-btn>AI & Software</button>
+      </li>
+
+      <li class="filter-item">
+        <button data-filter-btn>IoT & Hardware</button>
+      </li>
+
+      <li class="filter-item">
+        <button data-filter-btn>Social Impact</button>
+      </li>
+
+    </ul>
+
+    <div class="filter-select-box">
+
+      <button class="filter-select" data-select>
+
+        <div class="select-value" data-selecct-value>Select category</div>
+
+        <div class="select-icon">
+          <ion-icon name="chevron-down"></ion-icon>
+        </div>
+
+      </button>
+
+      <ul class="select-list">
+
+        <li class="select-item">
+          <button data-select-item>All</button>
+        </li>
+
+        <li class="select-item">
+          <button data-select-item>AI & Software</button>
+        </li>
+
+        <li class="select-item">
+          <button data-select-item>IoT & Hardware</button>
+        </li>
+
+        <li class="select-item">
+          <button data-select-item>Social Impact</button>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <ul class="project-list">
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Attendify.git">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-4.png" alt="Attendify" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">Attendify</h3>
+
+          <p class="project-category">AI-based Attendance System | Web/App | Face Recognition</p>
+
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="iot & hardware">
+        <a href="#" title="Project work in progress - Patent intended">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-2.png" alt="Blucon" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">Blucon</h3>
+
+          <p class="project-category">Bluetooth Helmet Communication | Hardware | Patent-Intended</p>
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Bus-Root.git">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-3.png" alt="BusRoot" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">BusRoot</h3>
+
+          <p class="project-category">Bus Announcement System | Hardware | IoT</p>
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="social impact">
+        <a href="https://www.figma.com/proto/3g6sszXCXVtMKNjxBVDeX7/Agrotechzz?page-id=0%3A1&node-id=23-7&p=f&viewport=-151%2C58%2C0.11&t=075fWEdpGUZNzOaF-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=23%3A7">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-1.png" alt="Agrotechz" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">Agrotechz</h3>
+
+          <p class="project-category">Agricultural Support System | Dual-Level | Social Impact</p>
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/BGR-Studio.git">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-5.png" alt="BGR Studio" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">BGR Studio</h3>
+
+          <p class="project-category">Image Background Removal | Upload | Download</p>
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Auto-Certificate-Generator-Email-Sender-using-Excel.git">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-8.png" alt="Certificate Generator" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">Certificate and Email Generation</h3>
+
+          <p class="project-category">Certificate Generation | Email Automation | Html Mail</p>
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Global-Car-GPS-Tracker.git">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-6.png" alt="Personal AI Assistant" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">Personal AI Assistant</h3>
+
+          <p class="project-category">Ai Assistance | Web development | API Integration</p>
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Jarvis-Desktop-Voice-Assistant.git">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-7.png" alt="AI Assistant" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">Local AI Assistant</h3>
+
+          <p class="project-category">Jarvis-like | Arduino + Gemini API | Voice I/O</p>
+
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="social impact">
+        <a href="https://github.com/geo-cherian-mathew-2k28/pratheeksha-anti-drug-support.git">
+
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project-9.png" alt="pratheeksha" loading="lazy">
+          </figure>
+
+          <h3 class="project-title">pratheeksha anti drug support</h3>
+
+          <p class="project-category">Youth Protection | Tech Enabled | Anti Drug Initiative</p>
+
+        </a>
+      </li>
+
+    </ul>
+
+  </section>
+
+</article>
+
+      <article class="certificates" data-page="certificates">
+
+        <header>
+          <h2 class="h2 article-title">Certificates</h2>
+        </header>
+
+        <section class="certificate-list-section">
+
+          <!-- UPDATED FILTER LIST with new Achievement category -->
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Course Certificates</button>
+            </li>
+            
+            <!-- ACHIEVEMENT FILTER ITEM -->
+            <li class="filter-item">
+              <button data-filter-btn>Achievement Certificates</button>
+            </li>
+            <!-- END FILTER ITEM -->
+
+            <li class="filter-item">
+              <button data-filter-btn>Participation</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Volunteers</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Others</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Course Certificates</button>
+              </li>
+              
+              <!-- ACHIEVEMENT SELECT ITEM -->
+              <li class="select-item">
+                <button data-select-item>Achievement Certificates</button>
+              </li>
+              <!-- END SELECT ITEM -->
+
+              <li class="select-item">
+                <button data-select-item>Participation</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Volunteers</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Others</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <!-- ADDED data-certificate-item AND data-certificate-src ATTRIBUTES -->
+          <ul class="project-list" data-certificate-list>
+            
+            <!-- UPDATED: Element for displaying "nothing found" message - style adjusted for shorter, centered message -->
+            <li class="nothing-found-message" style="display: none; text-align: center; color: var(--vegas-gold); padding: 20px; width: 100%; border-radius: 8px;">
+              <h3 class="h4" style="color: inherit; margin-bottom: 5px;">No Certificates Found</h3>
+              <p style="font-size: 0.9em;">Try a different filter.</p>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <!-- ADDED data-certificate-src HERE -->
+                  <img src="./assets/images/certi-1.jpg" alt="Placeholder Certificate 1" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-1.jpg">
+                </figure>
+                <h3 class="project-title">Smart India Hackathon</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-2.jpg" alt="Placeholder Certificate 2" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-2.jpg">
+                </figure>
+                <h3 class="project-title">Nasa Space App Challenge</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+            
+            <li class="project-item active" data-filter-item data-category="volunteers" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-3.jpg" alt="Placeholder Certificate 3" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-3.jpg">
+                </figure>
+                <h3 class="project-title">N8N Workshop</h3>
+                <p class="project-category">Volunteer</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-4.jpg" alt="Placeholder Certificate 4" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-4.jpg">
+                </figure>
+                <h3 class="project-title">Bharatiya Antariksh</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="achievement certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-5.jpg" alt="Placeholder Certificate 5" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-5.jpg">
+                </figure>
+                <h3 class="project-title">SAP Hackathon</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <!-- UPDATED: Category confirmed as Course Certificate -->
+            <li class="project-item active" data-filter-item data-category="Course Certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi.jpg" alt="NPTEL" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi.jpg">
+                </figure>
+                <h3 class="project-title">NPTEL Coourse</h3>
+                <p class="project-category">Course Certificate</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="achievement certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-6.jpg" alt="Placeholder Certificate 6" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-6.jpg">
+                </figure>
+                <h3 class="project-title">Director's Honour Award S1</h3>
+                <p class="project-category">Achievement</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="achievement certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-7.jpg" alt="Placeholder Certificate 7" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-7.jpg">
+                </figure>
+                <h3 class="project-title">Director's Honour Award S2</h3>
+                <p class="project-category">Achievement</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-8.jpg" alt="Placeholder Certificate 8" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-8.jpg">
+                </figure>
+                <h3 class="project-title">Game Development Workshop</h3>
+                <p class="project-category">Workshop</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-9.jpg" alt="Placeholder Certificate 9" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-9.jpg">
+                </figure>
+                <h3 class="project-title">Google Solution Challenge</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <!-- UPDATED: Internship confirmed in Achievement Certificates category -->
+            <li class="project-item active" data-filter-item data-category="Achievement Certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-10.png" alt="Placeholder Certificate 10" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-10.png">
+                </figure>
+                <h3 class="project-title">Cognifyz Internship Completion</h3>
+                <p class="project-category">Internship</p>
+              </a>
+            </li>
+
+            <!-- UPDATED: Internship confirmed in Achievement Certificates category -->
+            <li class="project-item active" data-filter-item data-category="Achievement Certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-11.png" alt="Placeholder Certificate 11" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-11.png">
+                </figure>
+                <h3 class="project-title">Agrowtein Internship</h3>
+                <p class="project-category">Internship</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-12.jpg" alt="Placeholder Certificate 12" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-12.jpg">
+                </figure>
+                <h3 class="project-title">Virtual Vista 2.0</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <!-- UPDATED: Infosys Course (certi-13) in 'Course Certificates' -->
+            <li class="project-item active" data-filter-item data-category="Course Certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-13.png" alt="Placeholder Certificate 13" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-13.png">
+                </figure>
+                <h3 class="project-title">Infosys Course (1)</h3>
+                <p class="project-category">Course Certificate</p>
+              </a>
+            </li>
+
+            <!-- UPDATED: Infosys Course (certi-14) in 'Course Certificates' -->
+            <li class="project-item active" data-filter-item data-category="Course Certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-14.png" alt="Placeholder Certificate 14" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-14.png">
+                </figure>
+                <h3 class="project-title">Infosys Course (2)</h3>
+                <p class="project-category">Course Certificate</p>
+              </a>
+            </li>
+
+            <!-- UPDATED: IEEE Hackathon moved from 'Achievement Certificates' to 'Participation' -->
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-15.jpg" alt="Placeholder Certificate 15" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-15.jpg">
+                </figure>
+                <h3 class="project-title">IEEE Hackathon</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="achievement certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-16.jpg" alt="Placeholder Certificate 16" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-16.jpg">
+                </figure>
+                <h3 class="project-title">Matermind AJCE</h3>
+                <p class="project-category">Innovators Challenge</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-17.png" alt="Placeholder Certificate 17" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-17.png">
+                </figure>
+                <h3 class="project-title">Robotics Workshop</h3>
+                <p class="project-category">Workshop</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-18.png" alt="Placeholder Certificate 18" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-18.png">
+                </figure>
+                <h3 class="project-title">YIP 7.0</h3>
+                <p class="project-category">Innovators Challenge</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-19.jpg" alt="Placeholder Certificate 19" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-19.jpg">
+                </figure>
+                <h3 class="project-title">UI/UX Hackathon</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-20.jpg" alt="Placeholder Certificate 20" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-20.jpg">
+                </figure>
+                <h3 class="project-title">AI Builders Lab</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-21.jpg" alt="Placeholder Certificate 21" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-21.jpg">
+                </figure>
+                <h3 class="project-title">Nasa Space App Challenge</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+          </ul> 
+        </section>
+
+      </article>
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe
+              src="https://www.google.com/maps?q=Kerala,+India&output=embed"
+              width="400" height="300" loading="lazy"></iframe>
+          </figure>
+        </section>
+<section class="contact-form">
+  <h3 class="h3 form-title">Get In Touch</h3>
+
+  <form class="form" id="contactForm" data-form-id="meowngwy"> 
+
+    <div class="input-wrapper">
+      <input type="text" name="name" class="form-input" placeholder="Full name" required> 
+      <input type="email" name="email" class="form-input" placeholder="Email address" required>
+    </div>
+
+    <textarea name="message" class="form-input" placeholder="Your Message" required></textarea> 
+
+    <button class="form-btn" type="submit" id="submitBtn">
+      <ion-icon name="paper-plane"></ion-icon>
+      <span id="submitText">Send Message</span> 
+    </button>
+    
+    <div id="formStatus" style="padding: 10px; margin-top: 10px; text-align: center; color: var(--eerie-black-1); font-weight: 500; display: none;"></div>
+
+  </form>
+</section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- NEW Certificate Modal Container -->
+  <div class="certificate-modal-container" data-certificate-modal-container style="display:none;">
+    <div class="profile-overlay" data-certificate-overlay></div>
+
+    <section class="certificate-modal" role="dialog" aria-modal="true" aria-label="Certificate view">
+      <button class="modal-close-btn" data-certificate-modal-close-btn aria-label="Close certificate view">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <img src="" alt="Viewed Certificate" data-certificate-img class="certificate-modal-img">
+    </section>
+  </div>
+  <!-- END NEW Certificate Modal Container -->
+
+  <script src="./assets/js/script.js"></script>
+
+<script>
+  // 🔥 Profile Avatar Flip Script (Replaces old pop-up)
+  (function () {
+    const sidebarInfo = document.querySelector('.sidebar-info');
+    const flipTriggers = document.querySelectorAll('[data-flip-trigger]');
+    
+    if (!sidebarInfo || flipTriggers.length === 0) {
+      console.warn('Avatar Flip init aborted: missing elements');
+      return;
+    }
+
+    flipTriggers.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle the 'flipped' class on the container
+        sidebarInfo.classList.toggle('flipped');
+      });
+    });
+
+  })();
+
+  // 🔥 Certificate Modal Script (Kept separate as it handles image viewing)
+  (function () {
+    const certiModalContainer = document.querySelector('[data-certificate-modal-container]');
+    const certiList = document.querySelector('[data-certificate-list]');
+    const certiCloseBtn = certiModalContainer.querySelector('[data-certificate-modal-close-btn]');
+    const certiOverlay = certiModalContainer.querySelector('[data-certificate-overlay]');
+    const certiImg = certiModalContainer.querySelector('[data-certificate-img]');
+
+    if (!certiList || !certiModalContainer) {
+        console.warn('Certificate modal init aborted: missing elements');
+        return;
+    }
+
+    // Function to open the modal
+    function openCertificateModal(imageSrc) {
+        certiImg.src = imageSrc;
+        certiModalContainer.classList.add('active');
+        certiModalContainer.style.display = 'flex';
+        // Prevent background scrolling
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    // Function to close the modal
+    function closeCertificateModal() {
+        certiModalContainer.classList.remove('active');
+        certiModalContainer.style.display = 'none';
+        document.body.style.overflow = ''; // Restore background scrolling
+    }
+
+    // Event listener for clicks on the certificate list
+    certiList.addEventListener('click', (e) => {
+        // Find the closest parent <a> tag
+        const link = e.target.closest('.project-item a');
+        
+        if (link) {
+            e.preventDefault(); // Prevent default navigation
+            
+            // Get the image source from the data attribute on the <img> element inside the link
+            const img = link.querySelector('img[data-certificate-src]');
+            
+            if (img) {
+                openCertificateModal(img.getAttribute('data-certificate-src'));
+            }
+        }
+    });
+
+    // Event listeners to close the modal
+    if (certiCloseBtn) certiCloseBtn.addEventListener('click', closeCertificateModal);
+    if (certiOverlay) certiOverlay.addEventListener('click', closeCertificateModal);
+
+    // Keyboard listener to close the modal on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && certiModalContainer.classList.contains('active')) {
+        closeCertificateModal();
+      }
+    });
+  })();
+
+  // 🔥 Certificate Filtering Logic (New Implementation)
+  (function () {
+    const filterButtons = document.querySelectorAll('[data-filter-btn]');
+    const selectButtons = document.querySelectorAll('[data-select-item]');
+    const certificateItems = document.querySelectorAll('.project-list .project-item:not(.nothing-found-message)');
+    const nothingFoundMsg = document.querySelector('.nothing-found-message');
+    const selectValue = document.querySelector('[data-selecct-value]');
+    const filterSelectBox = document.querySelector('.filter-select');
+
+    /**
+     * Filters the certificates based on the given category.
+     * @param {string} category The normalized category name (e.g., 'course-certificates').
+     */
+    function filterCertificates(category) {
+        let itemsVisible = 0;
+
+        certificateItems.forEach(item => {
+            // Normalize the stored data-category attribute value
+            const itemCategory = item.getAttribute('data-category').toLowerCase().replace(/\s/g, '-');
+            
+            // Check if the item should be active/visible
+            const isActive = category === 'all' || itemCategory === category;
+            
+            if (isActive) {
+                item.classList.add('active');
+                // Check visibility based on the global CSS rules for .project-item.active
+                if (window.getComputedStyle(item).display !== 'none') {
+                    itemsVisible++;
+                }
+            } else {
+                item.classList.remove('active');
+            }
+        });
+
+        // Show or hide the "nothing found" message
+        if (nothingFoundMsg) {
+            // Note: The visibility of .project-item is controlled by external CSS, 
+            // but for safety, we rely on the JS count.
+            nothingFoundMsg.style.display = itemsVisible === 0 ? 'block' : 'none';
+        }
+    }
+
+    /**
+     * Handles the click event for all filter buttons (desktop and mobile).
+     * @param {Event} e The click event.
+     */
+    function handleFilterClick(e) {
+        let category = e.target.textContent.trim().toLowerCase().replace(/\s/g, '-');
+        let buttonText = e.target.textContent.trim();
+
+        // 1. Update the 'active' state for the desktop buttons
+        document.querySelectorAll('[data-filter-btn]').forEach(btn => btn.classList.remove('active'));
+        const desktopButton = Array.from(filterButtons).find(btn => 
+            btn.textContent.trim().toLowerCase().replace(/\s/g, '-') === category
+        );
+        if (desktopButton) {
+            desktopButton.classList.add('active');
+        }
+
+        // 2. Handle mobile select menu update (if applicable)
+        if (selectValue) {
+            selectValue.textContent = buttonText;
+        }
+        if (filterSelectBox) {
+             filterSelectBox.classList.remove('active'); // Close dropdown
+        }
+        
+        // 3. Apply the filter
+        filterCertificates(category);
+    }
+
+    // Attach event listeners to all filter buttons (desktop/mobile)
+    const allFilterButtons = [...filterButtons, ...selectButtons];
+    allFilterButtons.forEach(button => {
+        button.addEventListener('click', handleFilterClick);
+    });
+
+    // Handle the mobile select dropdown toggle
+    if (filterSelectBox) {
+        filterSelectBox.addEventListener('click', () => {
+            filterSelectBox.classList.toggle('active');
+        });
+    }
+
+    // Initial run to ensure the default filter ('All') is applied on load
+    window.addEventListener('load', () => {
+        filterCertificates('all'); 
+    });
+  })();
+
+  // 🔥 FORM FIX: Custom Formspree submission using Fetch API (Existing code - unchanged)
+  (function () {
+    const form = document.getElementById('contactForm');
+    const submitText = document.getElementById('submitText');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusDiv = document.getElementById('formStatus');
+
+    if (!form) return;
+
+    // Retrieves 'meowngwy' from the data-form-id attribute in the HTML
+    const formId = form.getAttribute('data-form-id'); 
+    const formspreeUrl = `https://formspree.io/f/${formId}`;
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      submitText.textContent = 'Sending...';
+      submitBtn.setAttribute('disabled', 'disabled');
+      statusDiv.style.display = 'none';
+
+      const data = new FormData(e.target);
+
+      try {
+        const response = await fetch(formspreeUrl, {
+          method: 'POST',
+          body: data,
+          headers: {
+              'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          statusDiv.style.display = 'block';
+          statusDiv.style.backgroundColor = 'var(--yellow-crayola)';
+          statusDiv.style.color = '#008000';
+          statusDiv.textContent = 'Message sent successfully!';
+          form.reset(); 
+        } else {
+          // Handle HTTP errors
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Submission failed');
+        }
+      } catch (error) {
+        console.error('Submission Error:', error);
+        statusDiv.style.display = 'block';
+        statusDiv.style.backgroundColor = 'var(--red-crayola)';
+        statusDiv.style.color = '#FF0000';
+        statusDiv.textContent = 'Failed to send message. Please try again.';
+      } finally {
+        // Reset button state
+        setTimeout(() => {
+          submitText.textContent = 'Send Message';
+          submitBtn.removeAttribute('disabled');
+          // Hide status message after a few seconds
+          setTimeout(() => { statusDiv.style.display = 'none'; }, 5000); 
+        }, 3000);
+      }
+    });
+  })();
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
