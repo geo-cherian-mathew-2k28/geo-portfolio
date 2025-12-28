@@ -5,7 +5,43 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Geo Cherian Mathew - AI & IoT Developer Portfolio</title>
+  
+  <!-- SEO & Meta Tags -->
+  <title>Geo Cherian Mathew - AI & IoT Developer Portfolio | Geo Amal Jyothi</title>
+  <meta name="description" content="Official portfolio of Geo Cherian Mathew, a Computer Science student at Amal Jyothi College of Engineering (Geo Amal Jyothi). Explore 30+ projects in AI, IoT, Software Development, and Social Impact solutions.">
+  <meta name="keywords" content="Geo Cherian Mathew, Geo Amal Jyothi, Geo Cherian Mathew Portfolio, AI Developer Kerala, IoT Projects, Amal Jyothi College of Engineering, Social Impact Developer, Geo Mathew Projects">
+  <meta name="author" content="Geo Cherian Mathew">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://geo-cherian-mathew-2k28.github.io/">
+  <meta property="og:title" content="Geo Cherian Mathew - AI & IoT Developer Portfolio | Geo Amal Jyothi">
+  <meta property="og:description" content="Explore the innovative AI, IoT, and Social Impact projects of Geo Cherian Mathew, a visionary developer from Amal Jyothi College of Engineering.">
+  <meta property="og:image" content="./assets/images/my-avatar.png">
+
+  <!-- JSON-LD Structured Data for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Geo Cherian Mathew",
+    "url": "https://geo-cherian-mathew-2k28.github.io/",
+    "image": "./assets/images/my-avatar.png",
+    "jobTitle": "AI & IoT Developer",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Amal Jyothi College of Engineering"
+    },
+    "knowsAbout": ["Artificial Intelligence", "IoT", "Software Development", "Social Impact"],
+    "alumniOf": "Amal Jyothi College of Engineering",
+    "sameAs": [
+      "https://in.linkedin.com/in/geo-cherian-mathew",
+      "https://github.com/geo-cherian-mathew-2k28",
+      "https://www.instagram.com/_geo_cherian_mathew_"
+    ]
+  }
+  </script>
 
   <link rel="shortcut icon" href="D:\vcard-personal-portfolio\assets\images\logo.ico" type="image/x-icon">
 
@@ -144,6 +180,8 @@
       display: none;
       position: fixed;
       inset: 0;
+
+
       background: rgba(0, 0, 0, 0.9);
       z-index: 999; /* Higher z-index for certificate modal */
       align-items: center;
@@ -181,24 +219,27 @@
         position: absolute;
         top: 10px;
         right: 10px;
-        background: rgba(255, 255, 255, 0.2);
-        color: var(--white-2);
+        /* FIX: Dark background for visibility against white certificates */
+        background: rgba(0, 0, 0, 0.6); 
+        color: #ffffff;
         border: none;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.2rem;
         cursor: pointer;
-        transition: background 0.2s;
-        z-index: 1000;
+        transition: background 0.2s, transform 0.2s;
+        z-index: 1001; /* High z-index to stay on top */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
 
     .certificate-modal-container .modal-close-btn:hover {
         background: var(--yellow-crayola);
         color: var(--smoky-black);
+        transform: scale(1.1);
     }
 
     /* ---------------------------------------------------- */
@@ -220,8 +261,6 @@
       to { opacity: 1; transform: scale(1); }
     }
     
-    /* Removed unused data-profile-avatar-btn styles as the logic now uses the flip container */
-
   </style>
 
 
@@ -367,7 +406,7 @@
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
+            <button class="navbar-link" data-nav-link>Projects</button>
           </li>
 
           <li class="navbar-item">
@@ -870,10 +909,10 @@
 
       </article>
 
-      <article class="portfolio" data-page="portfolio">
+      <article class="projects" data-page="projects">
 
   <header>
-    <h2 class="h2 article-title">Portfolio</h2>
+    <h2 class="h2 article-title">Projects</h2>
   </header>
 
   <section class="projects">
@@ -933,6 +972,197 @@
     </div>
 
     <ul class="project-list">
+
+      <!-- Moved New Specific Projects (17 items) to Top -->
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/File-Metadata-Inspector.git">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-11.png" alt="File Metadata Inspector" loading="lazy">
+          </figure>
+          <h3 class="project-title">File Metadata Inspector</h3>
+          <p class="project-category">Forensic Tool | SHA-256 | EXIF Data</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="social impact">
+        <a href="https://github.com/geo-cherian-mathew-2k28/EcoLens-AI-Waste-Advisor.git">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-12.png" alt="EcoLens AI Waste Advisor" loading="lazy">
+          </figure>
+          <h3 class="project-title">EcoLens AI Waste Advisor</h3>
+          <p class="project-category">Waste Audit | TensorFlow | Recycling</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/InsightX.git">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-13.png" alt="InsightX Analytics" loading="lazy">
+          </figure>
+          <h3 class="project-title">InsightX Analytics</h3>
+          <p class="project-category">E-commerce Dashboard | Streamlit | ML Forecast</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Secure-TeleOps.git">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-14.png" alt="Secure TeleOps" loading="lazy">
+          </figure>
+          <h3 class="project-title">Secure TeleOps</h3>
+          <p class="project-category">ChatOps | Telegram Bridge | Remote Admin</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/StudyPlanner.git">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-15.png" alt="StudyPlanner" loading="lazy">
+          </figure>
+          <h3 class="project-title">StudyPlanner</h3>
+          <p class="project-category">Goal Tracking | Web App | Productivity</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://musify-git-main-geo-cherian-mathew-2k28s-projects.vercel.app/">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-16.png" alt="Musify App" loading="lazy">
+          </figure>
+          <h3 class="project-title">Musify App</h3>
+          <p class="project-category">Music Streaming | Secure Web App | Subscriptions</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Enterprise-CV-Agents.git">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-17.png" alt="Enterprise CV Agents" loading="lazy">
+          </figure>
+          <h3 class="project-title">Enterprise CV Agents</h3>
+          <p class="project-category">SentinelFlow | ErgoGuard | Computer Vision</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Stegano-Vault">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-18.png" alt="Stegano Vault" loading="lazy">
+          </figure>
+          <h3 class="project-title">Stegano Vault</h3>
+          <p class="project-category">Steganography CLI | Python | Encryption</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Git-Glance">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-19.png" alt="Git Glance" loading="lazy">
+          </figure>
+          <h3 class="project-title">Git Glance</h3>
+          <p class="project-category">Developer Trading Cards | React App</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/insight-agent">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-20.png" alt="Insight Agent" loading="lazy">
+          </figure>
+          <h3 class="project-title">Insight Agent</h3>
+          <p class="project-category">AI Research Assistant | LangChain | Groq</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="social impact">
+        <a href="https://github.com/geo-cherian-mathew-2k28/iris-vision-assistant">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-21.png" alt="Iris Vision Assistant" loading="lazy">
+          </figure>
+          <h3 class="project-title">Iris Vision Assistant</h3>
+          <p class="project-category">Blind Assistance | PWA | TensorFlow.js</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/sentinel-sdk-">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-22.png" alt="Sentinel SDK" loading="lazy">
+          </figure>
+          <h3 class="project-title">Sentinel SDK</h3>
+          <p class="project-category">Local AI Security | API Key Protection</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="social impact">
+        <a href="https://github.com/geo-cherian-mathew-2k28/CivicSimplifier">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-23.png" alt="CivicSimplifier" loading="lazy">
+          </figure>
+          <h3 class="project-title">CivicSimplifier</h3>
+          <p class="project-category">PDF Simplifier | RAG | Privacy First</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="social impact">
+        <a href="https://github.com/geo-cherian-mathew-2k28/VocalTrust">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-24.png" alt="VocalTrust" loading="lazy">
+          </figure>
+          <h3 class="project-title">VocalTrust</h3>
+          <p class="project-category">Anti-Scam Security | Local AI | Privacy</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/Nova-Builder">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-25.png" alt="Nova Builder" loading="lazy">
+          </figure>
+          <h3 class="project-title">Nova Builder</h3>
+          <p class="project-category">AI Code Generator | Web App</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/t2s">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-26.png" alt="T2S System" loading="lazy">
+          </figure>
+          <h3 class="project-title">T2S System</h3>
+          <p class="project-category">Text to Speech | Local System</p>
+        </a>
+      </li>
+
+      <li class="project-item  active" data-filter-item data-category="ai & software">
+        <a href="https://github.com/geo-cherian-mathew-2k28/AI-Interviewer">
+          <figure class="project-img">
+            <div class="project-item-icon-box"><ion-icon name="eye-outline"></ion-icon></div>
+            <img src="./assets/images/project-27.png" alt="AI Interviewer" loading="lazy">
+          </figure>
+          <h3 class="project-title">AI Interviewer</h3>
+          <p class="project-category">Technical Interview Bot | Capability Analysis</p>
+        </a>
+      </li>
+
+      <!-- Original Projects Follow Below -->
 
       <li class="project-item  active" data-filter-item data-category="ai & software">
         <a href="https://github.com/geo-cherian-mathew-2k28/Indian-Soil-moisture-prediction-model-.git">
@@ -1204,6 +1434,38 @@
               <p style="font-size: 0.9em;">Try a different filter.</p>
             </li>
 
+            <!-- Moved New Certificates to Top (6 items) -->
+          
+          
+            
+            <li class="project-item active" data-filter-item data-category="achievement certificates" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-24.jpg" alt="N8N Hackathon" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-24.jpg">
+                </figure>
+                <h3 class="project-title">N8N Hackathon</h3>
+                <p class="project-category">Achievement</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-25.jpg" alt="VBYD Designathon" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-25.jpg">
+                </figure>
+                <h3 class="project-title">VBYD Designathon</h3>
+                <p class="project-category">Participation</p>
+              </a>
+            </li>
+
+            <!-- Original Certificates Follow Below -->
+
             <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
               <a href="#">
                 <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
@@ -1243,6 +1505,19 @@
               </a>
             </li>
 
+            <li class="project-item active" data-filter-item data-category="volunteers" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-22.png" alt="Placeholder Certificate 3" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-22.png">
+                </figure>
+                <h3 class="project-title">AI Workshop</h3>
+                <p class="project-category">Resourse Person | Volunteer</p>
+              </a>
+            </li>
+
             <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
               <a href="#">
                 <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
@@ -1252,6 +1527,19 @@
                   <img src="./assets/images/certi-4.jpg" alt="Placeholder Certificate 4" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-4.jpg">
                 </figure>
                 <h3 class="project-title">Bharatiya Antariksh</h3>
+                <p class="project-category">Hackathon</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="participation" data-certificate-item>
+              <a href="#">
+                <figure class="project-img" style="aspect-ratio: 1 / 1; overflow: hidden;">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/certi-23.jpg" alt="Placeholder Certificate 4" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" data-certificate-src="./assets/images/certi-23.jpg">
+                </figure>
+                <h3 class="project-title">Code-2-Create graVITas'25</h3>
                 <p class="project-category">Hackathon</p>
               </a>
             </li>
@@ -1489,6 +1777,7 @@
                 <p class="project-category">Hackathon</p>
               </a>
             </li>
+
           </ul> 
         </section>
 
